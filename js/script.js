@@ -86,8 +86,8 @@ function handleCurrent(currentWeather) {
     var containerNode = document.querySelector('.weatherContainer')
     htmlString += '<div class="innerDiv">'
     htmlString +=	'<h1>NOW</h1>'
-    htmlString += 	'<h1>' + currentWeather.currently.temperature+ ' &#8457</h1>'
     htmlString += 	'<h2>'+ currentWeather.currently.summary+ '</h2>'
+    htmlString += 	'<h2>' + currentWeather.currently.temperature+ ' &#8457</h2>'
     htmlString += 	'<h4>Feels like ' + currentWeather.currently.apparentTemperature+ ' &#8457</h4>'
     htmlString += 	'<h4>'+ currentWeather.currently.precipProbability * 100 + '% chance of rain</h5>'
     htmlString += '</div>'
@@ -141,6 +141,28 @@ function dayConverter (unixTime){
 }
 
 //**************************HOURLY WEATHER**************************
+
+function handleHourly(arrayOfObjects){
+	var arrayToHTML = ''
+	var hourlyArray = arrayOfObjects.hourly.data
+	var containerNode = document.querySelector('.weatherContainer')
+	for (var i = 0; i<hourlyArray.length; i++){
+		arrayToHTML += hourlyHTML(hourlyArray[i])
+	}
+	containerNode.innerHTML = arrayToHTML
+}
+
+function hourlyHTML(hourlyWeather) {
+	var htmlString = ''
+	htmlString += '<div class="innerDiv">'
+    htmlString += 	'<h3>' + hourConverter(hourlyWeather.time) + '</h3>'
+    htmlString += 	'<h4>'+ hourlyWeather.summary+ '</h4>'
+    htmlString += 	'<h4>Temperature: ' + hourlyWeather.temperature + ' &#8457</h4>'
+    htmlString += 	'<h5>Chance of rain: '+ hourlyWeather.precipProbability * 100 + ' %</h5>'
+    htmlString += '</div>'
+    return htmlString
+}
+
 function hourConverter(timestamp) {
   var d = new Date(timestamp * 1000),
 		hh = d.getHours(),
@@ -161,30 +183,6 @@ function hourConverter(timestamp) {
 	time = h + ':' + min + ' ' + ampm;	
 	return time;
 }
-
-function hourlyHTML(hourlyWeather) {
-	var htmlString = ''
-	htmlString += '<div class="innerDiv">'
-    htmlString += 	'<h1>' + hourConverter(hourlyWeather.time) + '</h1>'
-    htmlString += 	'<h1>Temperature: ' + hourlyWeather.temperature + ' &#8457</h1>'
-    htmlString += 	'<h2>'+ hourlyWeather.summary+ '</h2>'
-    htmlString += 	'<h2>Chance of rain: '+ hourlyWeather.precipProbability * 100 + ' %</h2>'
-    htmlString += '</div>'
-    return htmlString
-}
-
-function handleHourly(arrayOfObjects){
-	var arrayToHTML = ''
-	var hourlyArray = arrayOfObjects.hourly.data
-	var containerNode = document.querySelector('.weatherContainer')
-	for (var i = 0; i<hourlyArray.length; i++){
-		arrayToHTML += hourlyHTML(hourlyArray[i])
-	}
-	containerNode.innerHTML = arrayToHTML
-}
-
-
-
 
 //*******************************************************************
 //				RUN CONTROLLER INITIALLLY & ON HASH CHAHGE

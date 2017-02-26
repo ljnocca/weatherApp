@@ -3,6 +3,26 @@
     font-family: 'Playfair Display', serif;
 }
 
+html{
+	font-size: 10px
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
 body {
     background: url(https://static.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg);
     background-repeat: no-repeat;
@@ -11,8 +31,18 @@ body {
 
 .weatherContainer {
     display: flex;
+    width: 500px;
+    margin: 0 auto;
 }
 
+.innerDiv {
+    width: 80%;
+    border-bottom: 1px solid #5C7EB4;
+    margin: 15% auto;
+    background: white;
+    opacity: 0.5;
+    padding-left: 10px;
+}
 
 
 #pageName,
@@ -81,11 +111,4 @@ body {
 }
 
 
-.innerDiv {
-    width: 80%;
-    border-bottom: 1px solid #5C7EB4;
-    margin: 15% auto;
-    background: white;
-    opacity: 0.5;
-    padding-left: 10px;
-}
+
