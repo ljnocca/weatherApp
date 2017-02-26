@@ -87,7 +87,8 @@ function handleCurrent(currentWeather) {
     htmlString += '<div class="innerDiv">'
     htmlString +=	'<h1>NOW</h1>'
     htmlString += 	'<h2>'+ currentWeather.currently.summary+ '</h2>'
-    htmlString += 	'<h2>' + currentWeather.currently.temperature+ ' &#8457</h2>'
+    var currentTemp = currentWeather.currently.temperature.toString()
+    htmlString += 	'<h2>' + currentTemp.substring(0,2) + ' &#8457</h2>'
     htmlString += 	'<h4>Feels like ' + currentWeather.currently.apparentTemperature+ ' &#8457</h4>'
     htmlString += 	'<h4>'+ currentWeather.currently.precipProbability * 100 + '% chance of rain</h5>'
     htmlString += '</div>'
@@ -158,7 +159,7 @@ function hourlyHTML(hourlyWeather) {
     htmlString += 	'<h3>' + hourConverter(hourlyWeather.time) + '</h3>'
     htmlString += 	'<h4>'+ hourlyWeather.summary+ '</h4>'
     htmlString += 	'<h4>Temperature: ' + hourlyWeather.temperature + ' &#8457</h4>'
-    htmlString += 	'<h5>Chance of rain: '+ hourlyWeather.precipProbability * 100 + ' %</h5>'
+    htmlString += 	'<h4>Chance of rain: '+ hourlyWeather.precipProbability * 100 + ' %</h4>'
     htmlString += '</div>'
     return htmlString
 }

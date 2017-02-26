@@ -36,6 +36,7 @@ body {
 
 .innerDiv {
     width: 80%;
+    border: 1px solid lightgrey;
     border-bottom: 1px solid #5C7EB4;
     margin: 15% auto;
     background: white;
