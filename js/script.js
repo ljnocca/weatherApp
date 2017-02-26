@@ -100,7 +100,7 @@ function handleDaily(arrayOfObjects){
 	var arrayToHTML = ''
 	var dailyArray = arrayOfObjects.daily.data
 	var containerNode = document.querySelector('.weatherContainer')
-	for (var i = 0; i<dailyArray.length; i++){
+	for (var i = 0; i<7; i++){
 		arrayToHTML += dailyHTML(dailyArray[i])
 	}
 	containerNode.innerHTML = arrayToHTML
@@ -146,7 +146,7 @@ function handleHourly(arrayOfObjects){
 	var arrayToHTML = ''
 	var hourlyArray = arrayOfObjects.hourly.data
 	var containerNode = document.querySelector('.weatherContainer')
-	for (var i = 0; i<hourlyArray.length; i++){
+	for (var i = 0; i<7; i++){
 		arrayToHTML += hourlyHTML(hourlyArray[i])
 	}
 	containerNode.innerHTML = arrayToHTML
