@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
+}
+
+body {
+    background: url(https://static.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.weatherContainer {
+    display: flex;
+}
+
+
+
+#pageName,
+.subHeader {
+    text-align: center;
+}
+
+#pageName {
+	background: #5C7EB4;
+    opacity: 0.5;
+    color: whitesmoke;
+}
+
+.searchBar {
+	font-size: 20px;
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    background: 0;
+    border: 0;
+    border-bottom: 3px solid #fff;
+    color: #fff;
+    font-weight: 500;
+    outline: 0;
+    text-align: center;
+}
+
+.button {
+	-moz-box-shadow:inset 0px 1px 19px -4px #80badb;
+	-webkit-box-shadow:inset 0px 1px 19px -4px #80badb;
+	box-shadow:inset 0px 1px 19px -4px #80badb;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #80badb), color-stop(1, #5c7eb4));
+	background:-moz-linear-gradient(top, #80badb 5%, #5c7eb4 100%);
+	background:-webkit-linear-gradient(top, #80badb 5%, #5c7eb4 100%);
+	background:-o-linear-gradient(top, #80badb 5%, #5c7eb4 100%);
+	background:-ms-linear-gradient(top, #80badb 5%, #5c7eb4 100%);
+	background:linear-gradient(to bottom, #80badb 5%, #5c7eb4 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80badb', endColorstr='#5c7eb4',GradientType=0);
+	background-color:#80badb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #5c7eb4;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Georgia;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+}
+.button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5c7eb4), color-stop(1, #80badb));
+	background:-moz-linear-gradient(top, #5c7eb4 5%, #80badb 100%);
+	background:-webkit-linear-gradient(top, #5c7eb4 5%, #80badb 100%);
+	background:-o-linear-gradient(top, #5c7eb4 5%, #80badb 100%);
+	background:-ms-linear-gradient(top, #5c7eb4 5%, #80badb 100%);
+	background:linear-gradient(to bottom, #5c7eb4 5%, #80badb 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c7eb4', endColorstr='#80badb',GradientType=0);
+	background-color:#5c7eb4;
+}
+.button:active {
+	position:relative;
+	top:1px;
+}
+
+
+.innerDiv {
+    width: 80%;
+    border-bottom: 1px solid #5C7EB4;
+    margin: 15% auto;
+    background: white;
+    opacity: 0.5;
+    padding-left: 10px;
+}

@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 	<html>
 	<head>
-		<title></title>
+		<title>Laurent's Weather App</title>
 		<link rel="stylesheet" type="text/css" href="styles/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 	</head>
 	<body>
-		<h1>Weather App</h1>
+		<h1 id="pageName">Weather at your location</h1>
+		<div class = subHeader>
+			<input class = "searchBar" type="text" placeholder="Search City">
             <nav class='navBar'>
-              <button value='/current'>Current</button>
-              <button value='/daily'>Daily</button>
-              <button value='/hourly'>Hourly</button>
+              <button class="button" value='/current'>Current</button>
+              <button class="button" value='/daily'>Daily</button>
+              <button class="button" value='/hourly'>Hourly</button>
             </nav>
+        </div>
 
-		<div class = "weatherContainer"></div>
+            <div class = "weatherContainer">
+            </div>
 
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/script.js"></script>
