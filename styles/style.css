@@ -41,6 +41,7 @@ body {
 }
 
 .innerDiv {
+	width: 15%;
     border: 1px solid lightgrey;
     border-bottom: 1px solid #5C7EB4;
     margin: 0 auto;
@@ -58,8 +59,6 @@ body {
 }
 
 #pageName {
-	background: #5C7EB4;
-    opacity: 0.6;
     color: white;
 }
 
@@ -69,11 +68,10 @@ body {
     margin: 0 auto;
     margin-top: 10px;
     display: block;
-    background: black;
-    opacity: 0.5;
+	background: 0;
     border: 0;
-    border-bottom: 3px solid #fff;
-    color: #0ebce5;
+    border-bottom: 3px solid white;
+    color: white;
     font-weight: 500;
     outline: 0;
     text-align: center;
