@@ -19,7 +19,9 @@ navigator.geolocation.getCurrentPosition(handleCoords)
 var searchNode = document.querySelector('.searchBar')
 
 
-//**************************CONTROLLER**************************
+//*******************************************************************
+//CONTROLLER: CHECKS IF HASH EXISTS. IF SO, ASSIGN/RUN VIEWS. IF NOT, RUN HANDLE COORDS.
+//*******************************************************************
 function controller() {
     var hashStr = location.hash.substr(1)
     var hashParts = hashStr.split('/')
@@ -45,7 +47,9 @@ function controller() {
     }
 }
 
-//**************************HANDLECOORDS: CREATES HASH PATH**************************
+//*******************************************************************
+//HANDLECOORDS: CREATES HASH PATH
+//*******************************************************************
 function handleCoords (coordsObj) { 
     var lat = coordsObj.coords.latitude
     var lng = coordsObj.coords.longitude
@@ -57,7 +61,9 @@ function handleCoords (coordsObj) {
     })
 }
 
-
+//*******************************************************************
+//EVENT LISTENERS
+//*******************************************************************
 searchNode.addEventListener('keydown',function (event){
 	if (event.keyCode === 13){
 		var city = event.target.value
@@ -83,17 +89,13 @@ function handleCity (apiResponse){
     })
 }
 
-
-
 function handleError(err) {//this function is only run if an error is detected
     console.log('Error!', err)
 }
 
 //*******************************************************************
-//								VIEWS
+//CURRENT WEATHER
 //*******************************************************************
-
-//**************************CURRENT WEATHER**************************
 function handleCurrent(currentWeather) {
 	var htmlString = ''
     var containerNode = document.querySelector('.weatherContainer')
@@ -107,7 +109,9 @@ function handleCurrent(currentWeather) {
     containerNode.innerHTML= htmlString
 }
 
-//**************************DAILY WEATHER**************************
+//*******************************************************************
+//DAILY WEATHER
+//*******************************************************************
 
 function handleDaily(arrayOfObjects){
 	var arrayToHTML = ''
@@ -150,8 +154,9 @@ function dayConverter (unixTime){
     }
 }
 
-//**************************HOURLY WEATHER**************************
-
+//*******************************************************************
+//HOURLY WEATHER
+//*******************************************************************
 function handleHourly(arrayOfObjects){
 	var arrayToHTML = ''
 	var hourlyArray = arrayOfObjects.hourly.data
@@ -195,7 +200,7 @@ function hourConverter(timestamp) {
 }
 
 //*******************************************************************
-//				RUN CONTROLLER INITIALLLY & ON HASH CHAHGE
+//RUN CONTROLLER INITIALLLY & ON EACH HASH CHANGE
 //*******************************************************************
-window.addEventListener('hashchange', controller)
 controller()
+window.addEventListener('hashchange', controller)
