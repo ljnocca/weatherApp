@@ -1,3 +1,16 @@
+// 1. loading gif
+// 2. weather image based on icon state
+// clear-day, 
+// clear-night, 
+// rain, 
+// snow, 
+// sleet, 
+// wind, 
+// fog, 
+// cloudy, 
+// partly-cloudy-day,
+// partly-cloudy-night
+
 var baseURL = 'https://api.darksky.net/forecast/f693ad4fa47137321f70f403e91be488/'
 var googleAPI = 'http://maps.googleapis.com/maps/api/geocode/json?address='
 
