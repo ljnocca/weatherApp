@@ -84,7 +84,7 @@ function handleError(err) {//this function is only run if an error is detected
 function handleCurrent(currentWeather) {
 	var htmlString = ''
     var containerNode = document.querySelector('.weatherContainer')
-    htmlString += '<div class="innerDiv">'
+    htmlString += '<div class="innerDiv currentWeather">'
     htmlString +=	'<h1>NOW</h1>'
     htmlString += 	'<h3>'+ currentWeather.currently.summary+ '</h3>'
     htmlString += 	'<h3>' + Math.floor(currentWeather.currently.temperature) + ' &#8457</h3>'
@@ -114,9 +114,6 @@ function dailyHTML(dailyWeather) {
     htmlString += 	'<h4>'+ dailyWeather.summary+ '</h4>'
     htmlString += 	'<h4>Chance of rain: '+ dailyWeather.precipProbability * 100 + ' %</h4>'
     htmlString += '</div>'
-    var divNode = document.querySelector('.innerDiv')
-    divNode.style.display = 'inline-block'
-    divNode.style.width = '32%'
     return htmlString
 }
 
