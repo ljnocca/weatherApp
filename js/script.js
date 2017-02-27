@@ -12,7 +12,7 @@
 // partly-cloudy-night
 
 var baseURL = 'https://api.darksky.net/forecast/f693ad4fa47137321f70f403e91be488/'
-var googleAPI = 'http://maps.googleapis.com/maps/api/geocode/json?address='
+var googleAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address='
 
 var navNode = document.querySelector('.navBar')
 navigator.geolocation.getCurrentPosition(handleCoords)
