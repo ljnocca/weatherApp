@@ -86,10 +86,9 @@ function handleCurrent(currentWeather) {
     var containerNode = document.querySelector('.weatherContainer')
     htmlString += '<div class="innerDiv">'
     htmlString +=	'<h1>NOW</h1>'
-    htmlString += 	'<h2>'+ currentWeather.currently.summary+ '</h2>'
-    var currentTemp = currentWeather.currently.temperature.toString()
-    htmlString += 	'<h2>' + currentTemp.substring(0,2) + ' &#8457</h2>'
-    htmlString += 	'<h4>Feels like ' + currentWeather.currently.apparentTemperature+ ' &#8457</h4>'
+    htmlString += 	'<h3>'+ currentWeather.currently.summary+ '</h3>'
+    htmlString += 	'<h3>' + Math.floor(currentWeather.currently.temperature) + ' &#8457</h3>'
+    htmlString += 	'<h4>Feels like ' + Math.floor(currentWeather.currently.apparentTemperature) + ' &#8457</h4>'
     htmlString += 	'<h4>'+ currentWeather.currently.precipProbability * 100 + '% chance of rain</h5>'
     htmlString += '</div>'
     containerNode.innerHTML= htmlString
@@ -111,7 +110,7 @@ function dailyHTML(dailyWeather) {
     var htmlString = ''
     htmlString += '<div class="innerDiv">'
     htmlString += 	'<h3><u>' + dayConverter(dailyWeather.time)+ '</u></h3>'
-    htmlString += 	'<h4>Temp: ' + dailyWeather.temperatureMax+ ' / ' + dailyWeather.temperatureMin +  '&#8457</h4>'
+    htmlString += 	'<h4>Temp: ' + Math.floor(dailyWeather.temperatureMax)+ ' / ' + Math.floor(dailyWeather.temperatureMin) +  '&#8457</h4>'
     htmlString += 	'<h4>'+ dailyWeather.summary+ '</h4>'
     htmlString += 	'<h4>Chance of rain: '+ dailyWeather.precipProbability * 100 + ' %</h4>'
     htmlString += '</div>'
@@ -158,8 +157,8 @@ function hourlyHTML(hourlyWeather) {
 	htmlString += '<div class="innerDiv">'
     htmlString += 	'<h3>' + hourConverter(hourlyWeather.time) + '</h3>'
     htmlString += 	'<h4>'+ hourlyWeather.summary+ '</h4>'
-    htmlString += 	'<h4>Temperature: ' + hourlyWeather.temperature + ' &#8457</h4>'
-    htmlString += 	'<h4>Chance of rain: '+ hourlyWeather.precipProbability * 100 + ' %</h4>'
+    htmlString += 	'<h4>Temperature: ' + Math.floor(hourlyWeather.temperature) + ' &#8457</h4>'
+    htmlString += 	'<h4>Chance of rain: '+ Math.floor(hourlyWeather.precipProbability) * 100 + ' %</h4>'
     htmlString += '</div>'
     return htmlString
 }
