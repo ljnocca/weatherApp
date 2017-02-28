@@ -11,59 +11,79 @@
 // partly-cloudy-day,
 // partly-cloudy-night
 
-var baseURL = 'https://api.darksky.net/forecast/f693ad4fa47137321f70f403e91be488/'
-var googleAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address='
-
-var navNode = document.querySelector('.navBar')
-navigator.geolocation.getCurrentPosition(handleCoords)
-var searchNode = document.querySelector('.searchBar')
-
-
 //*******************************************************************
 //CONTROLLER: CHECKS IF HASH EXISTS. IF SO, ASSIGN/RUN VIEWS. IF NOT, RUN HANDLE COORDS.
 //*******************************************************************
-function controller() {
-    var hashStr = location.hash.substr(1)
-    var hashParts = hashStr.split('/')
+var baseURL = 'https://api.darksky.net/forecast/f693ad4fa47137321f70f403e91be488/'
 
+function controller() {
+    var hashStr = location.hash.substr(1) //read url after hash and assign it to var hashStr
+    var hashParts = hashStr.split('/') //split to an array & assign to 3 variables (lat, long, viewtype)
     var latitude = hashParts[0]
     var longitude = hashParts[1]
     var viewType = hashParts[2]
 
     var promiseInput = baseURL+latitude+','+longitude+'?callback=?'
     var weatherPromise = $.getJSON(promiseInput)
-
-    if (hashParts.length < 3) {
+  
+    if (hashParts.length < 3) { //run handleCoords if less than 3 hash parts
         (handleCoords, handleError)
+        navigator.geolocation.getCurrentPosition(handleCoords)
         return // leave the controller. the controller will run again when handleCoords causes another hashchange
-    }
+    } 
 
     if (viewType === 'current') {
         weatherPromise.then(handleCurrent)
+        showGif()
     } else if (viewType === 'daily') {
         weatherPromise.then(handleDaily)
+        showGif()
     } else if (viewType === 'hourly') {
         weatherPromise.then(handleHourly)
+        showGif()
     }
 }
 
 //*******************************************************************
 //HANDLECOORDS: CREATES HASH PATH
 //*******************************************************************
+var navNode = document.querySelector('.navBar')
+
 function handleCoords (coordsObj) { 
     var lat = coordsObj.coords.latitude
     var lng = coordsObj.coords.longitude
-    var hashString = lat + '/' + lng + '/current'
-    window.location.hash = hashString
-
+    
     navNode.addEventListener('click',function(event){
-    	window.location.hash = lat + '/' + lng + event.target.value
+        window.location.hash = lat + '/' + lng + event.target.value
     })
+
+    window.location.hash =  lat + '/' + lng + '/current'
+}
+
+function handleError(err) {//this function is only run if an error is detected
+    console.log('Error!', err)
+}
+
+//*******************************************************************
+//LOADER GIF FUNCTIONS
+//*******************************************************************
+
+function hideGif() {
+    var loadingIcon = document.querySelector('#loader')
+    loadingIcon.style.display = 'none'
+}
+
+function showGif() {
+    var loadingIcon = document.querySelector('#loader')
+    loadingIcon.style.display = 'block'
 }
 
 //*******************************************************************
 //EVENT LISTENERS
 //*******************************************************************
+var googleAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+var searchNode = document.querySelector('.searchBar')
+
 searchNode.addEventListener('keydown',function (event){
 	if (event.keyCode === 13){
 		var city = event.target.value
@@ -89,13 +109,19 @@ function handleCity (apiResponse){
     })
 }
 
-function handleError(err) {//this function is only run if an error is detected
-    console.log('Error!', err)
-}
+
 
 //*******************************************************************
 //CURRENT WEATHER
 //*******************************************************************
+
+// function activateCurrentSkycon() {
+//     var skycons = new Skycons({color:'white'})
+//     skycons.add('current', Skycons.SNOW)
+//     skycons.play()
+// }
+
+
 function handleCurrent(currentWeather) {
 	var htmlString = ''
     var containerNode = document.querySelector('.weatherContainer')
@@ -104,9 +130,12 @@ function handleCurrent(currentWeather) {
     htmlString += 	'<h3>'+ currentWeather.currently.summary+ '</h3>'
     htmlString += 	'<h3>' + Math.floor(currentWeather.currently.temperature) + ' &#8457</h3>'
     htmlString += 	'<h4>Feels like ' + Math.floor(currentWeather.currently.apparentTemperature) + ' &#8457</h4>'
-    htmlString += 	'<h4>'+ currentWeather.currently.precipProbability * 100 + '% chance of rain</h5>'
+    htmlString += 	'<h4>'+ Math.floor(currentWeather.currently.precipProbability*100) + '% chance of rain</h5>'
+    // htmlString +=   '<canvas id="current" width="128" height="128"></canvas>'
     htmlString += '</div>'
     containerNode.innerHTML= htmlString
+    // activateCurrentSkycon()
+    hideGif()
 }
 
 //*******************************************************************
@@ -121,6 +150,7 @@ function handleDaily(arrayOfObjects){
 		arrayToHTML += dailyHTML(dailyArray[i])
 	}
 	containerNode.innerHTML = arrayToHTML
+    hideGif()
 }
 
 function dailyHTML(dailyWeather) {
@@ -129,7 +159,7 @@ function dailyHTML(dailyWeather) {
     htmlString += 	'<h3><u>' + dayConverter(dailyWeather.time)+ '</u></h3>'
     htmlString += 	'<h4>Temp: ' + Math.floor(dailyWeather.temperatureMax)+ ' / ' + Math.floor(dailyWeather.temperatureMin) +  '&#8457</h4>'
     htmlString += 	'<h4>'+ dailyWeather.summary+ '</h4>'
-    htmlString += 	'<h4>Chance of rain: '+ dailyWeather.precipProbability * 100 + ' %</h4>'
+    htmlString += 	'<h4>Chance of rain: '+ Math.floor(dailyWeather.precipProbability * 100) + ' %</h4>'
     htmlString += '</div>'
     return htmlString
 }
@@ -165,6 +195,7 @@ function handleHourly(arrayOfObjects){
 		arrayToHTML += hourlyHTML(hourlyArray[i])
 	}
 	containerNode.innerHTML = arrayToHTML
+    hideGif()
 }
 
 function hourlyHTML(hourlyWeather) {
@@ -173,7 +204,7 @@ function hourlyHTML(hourlyWeather) {
     htmlString += 	'<h3>' + hourConverter(hourlyWeather.time) + '</h3>'
     htmlString += 	'<h4>'+ hourlyWeather.summary+ '</h4>'
     htmlString += 	'<h4>Temperature: ' + Math.floor(hourlyWeather.temperature) + ' &#8457</h4>'
-    htmlString += 	'<h4>Chance of rain: '+ Math.floor(hourlyWeather.precipProbability) * 100 + ' %</h4>'
+    htmlString += 	'<h4>Chance of rain: '+ Math.floor(hourlyWeather.precipProbability*100) + ' %</h4>'
     htmlString += '</div>'
     return htmlString
 }

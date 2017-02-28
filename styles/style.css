@@ -41,18 +41,20 @@ body {
 }
 
 .innerDiv {
-	width: 15%;
+	width: 35%;
     border: 1px solid lightgrey;
-    border-bottom: 1px solid #5C7EB4;
     margin: 0 auto;
     margin-top: 10%;
     margin-bottom: 5%;
-    background: black;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
-    opacity: 0.5;
     padding-left: 10px;
 }
 
+#loader{
+	text-align: center;
+	margin-top: 20px;
+}
 
 #pageName,
 .subHeader {
@@ -114,7 +116,6 @@ body {
 	background-color:#5c7eb4;
 }
 .button:active {
-	position:relative;
 	top:1px;
 }
 
